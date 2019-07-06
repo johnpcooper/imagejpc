@@ -6,6 +6,7 @@ from ij.gui import Roi
 imp = IJ.getImage()
 imp_title = imp.getTitle()
 path = IJ.getDirectory("image")
+IJ.log("Active image source: {}{}".format(path, imp_title))
 
 # Set measurements to redirect to the active image
 IJ.run("Set Measurements...", "area mean standard min center perimeter bounding fit feret's integrated median stack display redirect={}".format(imp_title))
@@ -16,10 +17,11 @@ roim.runCommand("Select All")
 roim.runCommand("Measure")
 
 # Save the measurements just made using the name of the active image
-title = imp_title[:-4]
-IJ.saveAs("Results", "{}{}.csv".format(path, title))
+measurements_filename = imp_title[:-4]
+IJ.saveAs("Results", "{}{}.csv".format(path, measurements_filename))
 IJ.selectWindow("Results")
 IJ.run("Close")
+IJ.log("Measurements saved at {}{}.csv".format(path, measurements_filename))
 
 # Just leaving this here for future reference
 #results = ij.measure.ResultsTable()
