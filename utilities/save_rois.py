@@ -14,6 +14,11 @@ path = IJ.getDirectory("image")
 
 # Instantiate RoiManager as rm, select all rois and measure them
 roim = RoiManager.getInstance()
+# Run the sort and interpolate commands. Before running "save rois" the
+# user should have define first and last ROIs and a few in between.
+roim.runCommand("Sort")
+roim.runCommand("Interpolate ROIs")
+# Get the roi count for quality control loop below
 rois_count = roim.getCount()
 if rois_count == N_imp_frames:
 	roi_save_path = str("{}{}_measurement_rois.zip".format(path, imp_title))
