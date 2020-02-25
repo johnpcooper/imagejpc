@@ -8,6 +8,14 @@ interval_hours = IJ.getNumber("Collection interval in hours:", 0.17)
 fontsize = IJ.getNumber("Fontsize:", 14)
 #get the directory containing the active image
 path = IJ.getDirectory("image")
+# If the active image is a duplicate of another image open, its path will be False and
+# will print as 'None'. If this is the case, have the user choose a directory to put the
+# timestamped tif
+if not path:
+	IJ.log("Image has no source directory")
+	path = IJ.getDirectory("Choose the directory to save the timestamped tif")
+else: 
+	pass
 
 height = imp.getHeight()
 width = imp.getWidth()

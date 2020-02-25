@@ -6,7 +6,7 @@ import os
 # should be able to get from metadata
 channel_names = ['bf', 'yfp', 'dsred']
 
-def save_tifs():
+def save_tif():
 	# Get the active image, its title, and the directory where it lies
 	imp = IJ.getImage()
 	imp_title = imp.getTitle()
@@ -42,5 +42,5 @@ for filename in filenames:
 	n_images = WindowManager.getImageCount()
 	i = 0
 	while i < n_images:
-		save_tifs()
+		save_tif()
 		i+= 1
