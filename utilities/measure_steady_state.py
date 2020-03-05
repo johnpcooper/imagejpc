@@ -2,8 +2,8 @@ import os
 from ij import IJ
 import glob
 
-_threshold_percent = 0.8
-_n_channels = 3
+_threshold_percent = IJ.getNumber("Enter proportion to cut off in brightfield edge segmentation", 0.85)
+_n_channels = IJ.getNumber("Enter proportion to cut off in brightfield edge segmentation", 3)
 
 def get_percentile(imp, percentile):
 
@@ -81,7 +81,7 @@ def open_files(n_channels, threshold_percent):
 		# Run my measure_rois.py plug in. Closes this set of images after running
 		IJ.run("measure rois")
 		
-open_files(_n_channels, _threshold_percent)
+open_files(int(_n_channels), _threshold_percent)
 
 			
 			
