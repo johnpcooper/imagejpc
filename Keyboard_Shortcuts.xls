@@ -1,0 +1,64 @@
+Shortcut	Command
+ Close Bracket	Show All
+0	*Stack to Images
+1	Select First Lane
+2	Select Next Lane
+3	Plot Lanes
+4	Original Scale
+5	View 100%
+6	*Find Edges
+7	*Fill Holes
+8	*Watershed
+9	*recent commands
+a	Select All
+A	Select None
+b	Add Selection...
+B	Blobs (25K)
+C	Brightness/Contrast...
+c	Copy
+d	Draw
+D	Duplicate...
+E	Restore Selection
+e	Scale...
+f	Fill
+F	Flatten
+g	*Convert to Mask
+G	Capture Screen
+h	Histogram
+H	Orthogonal Views
+I	Invert
+i	Show Info...
+j	^Save As JPEG... [j] (macro)
+j	Interactive Interpreter...
+K	Color Picker...
+k	Plot Profile
+L	^Create and Measure ROIs [L] (macro)
+l	Focus Search Bar
+M	Install... 
+m	Measure
+n	Image...
+N	Text Window
+O	Open Next
+o	Open...
+p	Print...
+P	Properties...
+q	*Set Measurements...
+Q	^Threshold brightfield [Q] (macro)
+R	Repeat Command
+r	Revert
+s	Save
+S	Smooth
+t	Add to Manager
+T	Threshold...
+u	*Analyze Particles...
+U	Control Panel...
+v	Paste
+V	System Clipboard
+w	Close
+W	Close All
+X	Crop
+x	Cut
+Y	Overlay Options...
+y	Properties... 
+Z	Channels Tool...
+z	Undo
