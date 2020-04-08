@@ -14,7 +14,7 @@ def split_stack():
 	n_images = WindowManager.getImageCount()
 
 	for i in range(0, n_images):
-		frame_imp = IJ.getImages()
+		frame_imp = IJ.getImage()
 		imp_title = frame_imp.getTitle()
 		
 		save_path = "{}{}".format(path, imp_title)
