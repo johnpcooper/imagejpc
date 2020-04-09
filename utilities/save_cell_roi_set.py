@@ -4,15 +4,15 @@ from ij.gui import Roi
 from ij.gui import GenericDialog
 import os
 
+# The purpose of this script is to save a set of rois
+# that in some way follow a cell through a stack
+# where each frame is a different timepoint. 
 
 # Should probably set these variables below when instantiating a class so they
 # can be attributes of class rather than global vairables
 _expt_type = 'byc'
 _accepted_roi_file_types = ['.roi', '.zip']
-_accepted_roi_set_types = ['bud', 'crop', 'measurement', 'steady_state']
-
-active_imp = IJ.getImage()
-active_imp_path = IJ.getDirectory("image")
+_accepted_roi_set_types = ['bud', 'crop', 'measurement']
 
 # get active image source directory and title
 def get_expt_title(active_imp):
@@ -43,7 +43,13 @@ def get_roi_fns(path):
 # Ask the user what type of roi set this is, can only specify types that are in list
 def get_roi_set_type():
 
-	roi_set_type = IJ.getString("Enter cell roi set type", _accepted_roi_set_types[0])
+	roi_set_type = None
+	
+	while roi_set_type not in _accepted_roi_set_types:
+
+		roi_set_type = IJ.getString("Enter cell ROI set type \n({})".format(_accepted_roi_set_types),
+									_accepted_roi_set_types[0])
+		
 	return roi_set_type
 	
 # Save current roi set as the active image name (date_byc_cell_length_of_files_list)
@@ -51,7 +57,8 @@ def get_roi_set_fn(expt_title, roi_fns, roi_set_type):
 	
 	cell_index = len(roi_fns)
 	# As far as I can tell, jython doesn't interpret 
-	# cell_index = f''
+	# cell_index = f'{len(roi_fns):03}' which would do the same thing
+	# as this if loop
 	if cell_index < 10:
 		cell_index = '00{}'.format(cell_index)
 
@@ -78,6 +85,8 @@ def add_cell_to_database():
 
 def run():
 
+	active_imp = IJ.getImage()
+	active_imp_path = IJ.getDirectory("image")
 	expt_title = get_expt_title(active_imp)
 	roi_fns = get_roi_fns(active_imp_path)
 	roi_set_type = get_roi_set_type()
