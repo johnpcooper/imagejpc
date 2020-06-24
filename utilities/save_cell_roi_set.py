@@ -109,6 +109,7 @@ class CellRoiSetter(object):
 		roim = RoiManager.getInstance()
 		roim.runCommand("Select All")
 		roim.runCommand("Save", roi_set_save_path)
+		roim.reset()
 	
 	# Add name of roi set and the path to its source to a master_index csvs
 	def add_result(self, column, row, value):
@@ -146,4 +147,5 @@ def run():
 	crs.save_roi_set(crs.roi_set_save_path)
 	crs.add_cell_to_results()
 
-run()
+if __name__ == "__main__":
+	run()
