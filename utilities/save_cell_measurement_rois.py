@@ -3,9 +3,6 @@ from ij.plugin.frame import RoiManager
 from ij.gui import Roi
 from ij.gui import GenericDialog
 
-# This is a script for saving roi sets define cell segmentation
-# in a cropped stack 
-
 gui = GenericDialog("ROI warning")
 
 # Get the active image, its title, and the directory where it lies
@@ -13,7 +10,7 @@ imp = IJ.getImage()
 imp_title = imp.getTitle()[:-4]
 N_imp_frames = imp.getNSlices()
 path = IJ.getDirectory("image")
-#IJ.log("Active image source: {}{}".format(path, imp_title))
+IJ.log("Active image source: {}{}".format(path, imp_title))
 
 # Instantiate RoiManager as rm, select all rois and measure them
 roim = RoiManager.getInstance()
@@ -26,7 +23,7 @@ rois_count = roim.getCount()
 if rois_count == N_imp_frames:
     roi_save_path = str("{}{}_measurement_rois.zip".format(path, imp_title))
     roim.runCommand("Select All")
-    roim.runCommand("Save", roi_save_path)  
+    roim.runCommand("Save", roi_save_path)
     print("ROIs saved at {}".format(roi_save_path))
 
 else:
