@@ -1,0 +1,10 @@
+0 -> stack to images
+ctrl + d -> duplicate image
+6 -> find edges
+7 -> fill holes
+8 -> watershed
+g -> convert to mask (want cell area to be black)
+q -> set measurements
+
+Then analyze particles to make the measurements defined above
+
