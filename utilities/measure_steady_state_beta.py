@@ -105,30 +105,23 @@ def analyze_files(n_channels, threshold_percent):
                     imp.changes = False
                     imp.close()
                     if roiCount != 0:
-                        roim.reset()
+						roim.reset()
                 # sorted() returns a sorted list of keys of
                 # the dictionary passed to the function
                 IJ.open(bf_path)
                 imp = IJ.getImage()
                 dic = dict(zip(roiCounts, threshold_values))
-                if len(dic) > 0:
-                    sorted_dic = sorted(dic)                
-                    final_threshold_value = dic[sorted_dic[-1]] 
-                    threshold_brightfield(imp, final_threshold_value)
-                    create_rois()
-                    IJ.run("scale rois", "choose=0.8 choose=0.8")
-                    # Set the public variable changes to false so that 
-                    # the save changes dialog won't pop up
-                    imp.changes = False
-                else:
-                    imp.close()
-                    
-            else:
-                pass
+				if len(dic) > 0:
+					final_threshold_value = dic[sorted_dic[-1]] 
+					threshold_brightfield(imp, final_threshold_value)
+					create_rois()
+					IJ.run("scale rois", "choose=0.8 choose=0.8")
+					# Set the public variable changes to false so that 
+					# the save changes dialog won't pop up
+					imp.changes = False
+				else:
+					print("No ROIs found for this image")
         # Run my measure_rois.py plug in. Closes this set of images after running
-        if len(dic) > 0
-            IJ.run("measure and clear rois")
-        else:
-            print("No cells found in image")
+        IJ.run("measure and clear rois")
         
 analyze_files(int(_n_channels), _threshold_percent)
