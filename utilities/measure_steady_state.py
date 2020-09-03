@@ -126,7 +126,7 @@ def analyze_files(n_channels, threshold_percent):
             else:
                 pass
         # Run my measure_rois.py plug in. Closes this set of images after running
-        if len(dic) > 0
+        if len(dic) > 0:
             IJ.run("measure and clear rois")
         else:
             print("No cells found in image")
