@@ -127,6 +127,8 @@ class CellRoiSetter(object):
                   self.roi_set_type,
                   self.active_imp_dir]
         arg = '|'.join(args)
+        # Run a macro from imagejpc that runs
+        # the script byc/imagejpc/addcellroi.py
         IJ.runMacroFile('addCell.ijm', arg)
         
 def run():
