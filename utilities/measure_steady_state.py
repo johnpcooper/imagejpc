@@ -78,7 +78,7 @@ def analyze_files(n_channels, threshold_percent):
                 # Closing the found bf image here cleans up the loop below
                 imp.close()
                 bf_path = path
-                IJ.log("Found bf image at {}".format(bf_path))              
+                IJ.log("Found bf image at {}".format(bf_path))     
                 # Try 14 different threshold values and use the one
                 # that yields the highest number of rois
                 roiCounts = []
@@ -112,11 +112,23 @@ def analyze_files(n_channels, threshold_percent):
                 imp = IJ.getImage()
                 dic = dict(zip(roiCounts, threshold_values))
                 if len(dic) > 0:
-                    sorted_dic = sorted(dic)                
+                    sorted_dic = sorted(dic)
+                    # Find the threshold value at which 
+                    # the most cell ROIs were identified
                     final_threshold_value = dic[sorted_dic[-1]] 
                     threshold_brightfield(imp, final_threshold_value)
                     create_rois()
                     IJ.run("scale rois", "choose=0.8 choose=0.8")
+                    # Save the rois generated above
+                    roiCount = roim.getCount()
+                    if roiCount > 1:
+                        ext = '.zip'
+                    else:
+                        ext = '.roi'
+                    rois_save_path = "{}_cell_rois{}".format(bf_path[0:-4], ext)
+                    roim = RoiManager.getInstance()
+                    roim.runCommand("Select All")
+                    roim.runCommand("Save", rois_save_path)
                     # Set the public variable changes to false so that 
                     # the save changes dialog won't pop up
                     imp.changes = False
@@ -125,7 +137,7 @@ def analyze_files(n_channels, threshold_percent):
                     
             else:
                 pass
-        # Run my measure_rois.py plug in. Closes this set of images after running
+        # Run my measure_and_clear_rois.py plug in. Closes this set of images after running
         if len(dic) > 0:
             IJ.run("measure and clear rois")
         else:
