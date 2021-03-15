@@ -52,7 +52,7 @@ def create_rois():
     # Create rois based on (in this script) the process brightfield image.
     # Also scale the rois down using my plugin scale_rois.py
     IJ.run("Set Measurements...", "area mean standard min centroid center perimeter bounding fit feret's integrated median stack display redirect=None decimal=3")
-    IJ.run("Analyze Particles...", "size=100-2000 circularity=0.60-1.00 exclude add in_situ")
+    IJ.run("Analyze Particles...", "size=100-2000 pixel circularity=0.60-1.00 exclude add in_situ")
 
 def analyze_files(n_channels, threshold_percent):
     # Ask the user to choose a directory containing the images to be analyzed
