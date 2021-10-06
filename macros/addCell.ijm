@@ -3,6 +3,10 @@
 // in order to be callable by "IJ.runMacroFile('addCell.ijm', arg)" in
 // save_cell_roi_set.py
 
+// You'll also need to change the script file location and
+// python.exe location according to your byc installation and byc
+// environment locations
+
 macro "addCell" {
     // Description coming soon
     arg = getArgument();
