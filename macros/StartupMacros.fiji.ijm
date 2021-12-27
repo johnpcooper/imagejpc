@@ -295,3 +295,13 @@ macro "Create and Measure ROIs [L]" {
 	run("measure rois");
 
 }
+
+macro "Save cell roi set [E]" {
+	run("Focus Search Bar");
+	run("save cell roi set");
+}
+
+macro "Measure ROIs [R]" {
+	run("Focus Search Bar");
+	run("measure rois");
+}
