@@ -1,0 +1,67 @@
+Shortcut,Command
+ Close Bracket,Show All
+1,Select First Lane
+2,Select Next Lane
+3,Plot Lanes
+4,Original Scale
+5,View 100%
+6,*name round roi
+7,*name long roi
+8,*save daughter roi set
+9,*recent commands
+a,Select All
+A,Select None
+B,^Auto contrast [B] (macro)
+b,Add Selection...
+B,Blobs
+C,Brightness/Contrast...
+c,Copy
+d,Draw
+D,Duplicate...
+E,^Save cell roi set [E] (macro)
+E,Restore Selection
+e,Scale...
+F,^Freehand [F] (macro)
+f,Fill
+F,Flatten
+G,Capture Screen
+h,Histogram
+H,Orthogonal Views
+I,Invert
+i,Show Info...
+j,^Save As JPEG... [j] (macro)
+j,Interactive Interpreter...
+K,Color Picker...
+k,Plot Profile
+L,^Create and Measure ROIs [L] (macro)
+L,Commands...
+l,Focus Search Bar
+M,Install... 
+m,Measure
+n,Image...
+N,Text Window
+O,Open Next
+o,Open...
+p,Print...
+P,Properties...
+Q,^Threshold brightfield [Q] (macro)
+R,^Measure ROIs [R] (macro)
+r,Repeat Command
+R,Revert
+S,^Sort ROIs [S] (macro)
+s,Save
+S,Smooth
+t,Add to Manager
+T,Threshold...
+U,Control Panel...
+v,Paste
+V,System Clipboard
+w,Close
+W,Close All
+X,^Rect Select [X] (macro)
+X,Crop
+x,Cut
+Y,Overlay Options...
+y,Properties... 
+Z,Channels Tool...
+z,Undo

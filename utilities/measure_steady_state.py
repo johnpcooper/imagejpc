@@ -52,7 +52,7 @@ def create_rois():
     # Create rois based on (in this script) the process brightfield image.
     # Also scale the rois down using my plugin scale_rois.py
     IJ.run("Set Measurements...", "area mean standard min centroid center perimeter bounding fit feret's integrated median stack display redirect=None decimal=3")
-    IJ.run("Analyze Particles...", "size=100-2000 pixel circularity=0.60-1.00 exclude add in_situ")
+    IJ.run("Analyze Particles...", "size=100-8000 pixel circularity=0.60-1.00 exclude add in_situ")
 
 def analyze_files(n_channels, threshold_percent):
     # Ask the user to choose a directory containing the images to be analyzed
@@ -97,7 +97,11 @@ def analyze_files(n_channels, threshold_percent):
                     if roim == None:
                         roiCount = 0
                     else:
-                        roiCount = roim.getCount()
+                        try:
+                            roiCount = roim.getCount()
+                        except:
+                            print('Failed to get ROI manager instance. Probably no ROIs found')
+                            roiCount = 0
                     roiCounts.append(roiCount)
                     threshold_values.append(threshold_value)
 
@@ -112,33 +116,38 @@ def analyze_files(n_channels, threshold_percent):
                 imp = IJ.getImage()
                 dic = dict(zip(roiCounts, threshold_values))
                 if len(dic) > 0:
-                    sorted_dic = sorted(dic)
-                    # Find the threshold value at which 
-                    # the most cell ROIs were identified
-                    final_threshold_value = dic[sorted_dic[-1]] 
-                    threshold_brightfield(imp, final_threshold_value)
-                    create_rois()
-                    IJ.run("scale rois", "choose=0.8 choose=0.8")
-                    # Save the rois generated above
-                    roiCount = roim.getCount()
-                    if roiCount > 1:
-                        ext = '.zip'
-                    else:
-                        ext = '.roi'
-                    rois_save_path = "{}_cell_rois{}".format(bf_path[0:-4], ext)
-                    roim = RoiManager.getInstance()
-                    roim.runCommand("Select All")
-                    roim.runCommand("Save", rois_save_path)
-                    # Set the public variable changes to false so that 
-                    # the save changes dialog won't pop up
-                    imp.changes = False
+                    try:
+                        sorted_dic = sorted(dic)
+                        # Find the threshold value at which 
+                        # the most cell ROIs were identified
+                        final_threshold_value = dic[sorted_dic[-1]] 
+                        threshold_brightfield(imp, final_threshold_value)
+                        create_rois()
+                        IJ.run("scale rois", "choose=0.8 choose=0.8")
+                        # Save the rois generated above
+                        roiCount = roim.getCount()
+                        if roiCount > 1:
+                            ext = '.zip'
+                        else:
+                            ext = '.roi'
+                        rois_save_path = "{}_cell_rois{}".format(bf_path[0:-4], ext)
+                        roim = RoiManager.getInstance()
+                        roim.runCommand("Select All")
+                        roim.runCommand("Save", rois_save_path)
+                        # Set the public variable changes to false so that 
+                        # the save changes dialog won't pop up
+                        imp.changes = False
+                        measureable = True
+                    except:
+                        print('Unable to find cell ROIs for this image')
+                        measureable = False
                 else:
                     imp.close()
                     
             else:
                 pass
         # Run my measure_and_clear_rois.py plug in. Closes this set of images after running
-        if len(dic) > 0:
+        if len(dic) > 0 and measureable == True:
             IJ.run("measure and clear rois")
         else:
             print("No cells found in image")

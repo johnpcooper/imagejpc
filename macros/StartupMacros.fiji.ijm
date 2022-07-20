@@ -305,3 +305,28 @@ macro "Measure ROIs [R]" {
 	run("Focus Search Bar");
 	run("measure rois");
 }
+
+macro "Auto contrast [B]" {
+	//run("Brightness/Contrast...");
+	run("Enhance Contrast", "saturated=0.35");
+}
+
+macro "Freehand [F]" {
+	setTool("freehand");
+}
+
+macro "Rect Select [X]" {
+	setTool("rectangle");
+}
+
+macro "name round roi [!]" {
+	//run("name round roi")
+}
+
+macro "name long roi [@]" {
+	//run("name long roi")
+}
+
+macro "save daughter roi set [#]" {
+	//run("save daughter roi set")
+}
