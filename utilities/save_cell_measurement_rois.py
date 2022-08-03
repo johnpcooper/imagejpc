@@ -27,8 +27,7 @@ if rois_count == N_imp_frames:
     print("ROIs saved at {}".format(roi_save_path))
 
 else:
-    print("ROI array was {} frames long, active image was {} frames long".format(rois_count, N_imp_frames))
-    
+    gui.addMessage("ROI array was {} frames long, active image was {} frames long".format(rois_count, N_imp_frames))
     # get the indices of the roi and let the user know which slices the double ROIs are at
     rois_array = roim.getRoisAsArray()
     double_roi_slices = []
@@ -48,4 +47,12 @@ else:
     for double_roi_slice in list(set(double_roi_slices)):
         gui.addMessage("Multiple ROIs for slice {}".format(double_roi_slice))
 
-    gui.showDialog()
+gui.addStringField("Save anyway?", "")
+    
+gui.showDialog()
+response = gui.getNextString()
+if response == 'yes':	    	
+    roi_save_path = str("{}{}_measurement_rois.zip".format(path, imp_title))
+    roim.runCommand("Select All")
+    roim.runCommand("Save", roi_save_path)
+    print("ROIs saved at {}".format(roi_save_path))
