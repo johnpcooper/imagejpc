@@ -16,6 +16,7 @@ class CellRoiSetter(object):
         self._accepted_roi_file_types = ['.roi', '.zip']
         self._accepted_roi_set_types = ['measurement', 'bud', 'crop']
         self._accepted_end_event_types = ['death', 'escape', 'sen']
+        self._accepted_contains_aggregate = ['NA', 'no', 'yes']
     
         self.active_imp = IJ.getImage()
         self.active_imp_dir = IJ.getDirectory("image")
@@ -23,6 +24,7 @@ class CellRoiSetter(object):
                 
         self.roi_set_type = self.get_roi_set_type()
         self.end_event_type = self.get_end_event_type()
+        self.contains_aggregate = self.get_contains_aggregate()
 
         self.expt_title = self.get_expt_title(self.active_imp)
         self.roi_fns = self.get_roi_fns(self.active_imp_dir, self.roi_set_type)
@@ -78,6 +80,16 @@ class CellRoiSetter(object):
             
         return end_event_type
         
+    def get_contains_aggregate(self):
+    	
+    	contains_aggregate  = None
+        while contains_aggregate not in self._accepted_contains_aggregate:
+            contains_aggregate = IJ.getString("Enter whether cell contains aggregate \n({})".format(self._accepted_end_event_types),
+                                        self._accepted_contains_aggregate[0])
+	return contains_aggregate                                        
+
+    	
+        
     # Save current roi set as the active image name (date_byc_cell_length_of_files_list)
     def get_roi_set_fn(self, expt_title, roi_fns, roi_set_type):
         
@@ -125,7 +137,8 @@ class CellRoiSetter(object):
                   self.roi_set_save_path,
                   self.end_event_type,
                   self.roi_set_type,
-                  self.active_imp_dir]
+                  self.active_imp_dir,
+                  self.contains_aggregate]
         arg = '|'.join(args)
         # Run a macro from imagejpc that runs
         # the script byc/imagejpc/addcellroi.py

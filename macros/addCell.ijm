@@ -17,6 +17,6 @@ macro "addCell" {
     // so it has access to byc source etc.
     script = "c:\\Users\\johnp\\Dropbox\\Projects\\byc\\byc\\imagejpc\\addcellroi.py";
     python = "C:\\.byc\\Scripts\\python.exe"
-    exec(python, script, args[0], args[1], args[2], args[3], args[4], args[5])
+    exec(python, script, args[0], args[1], args[2], args[3], args[4], args[5], args[6])
 
 }

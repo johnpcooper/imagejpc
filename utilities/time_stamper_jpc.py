@@ -22,6 +22,8 @@ else:
 height = imp.getHeight()
 width = imp.getWidth()
 size = imp.getImageStackSize()
+x = 15
+y=height
 
 IJ.log("Image title: {}".format(title))
 IJ.log("Save path: {}".format(path))
@@ -29,11 +31,12 @@ IJ.log("Height: {}".format(height))
 IJ.log("Width: {}".format(width))
 IJ.log("Size: {}".format(size))
 
-IJ.run("Label...", "format=0 starting={} interval={} x=0 y={} font={} text=[{}] range=1-{}".format(start_time,
+IJ.run("Label...", "format=0 starting={} interval={} x={} y={} font={} text=[{}] range=1-{}".format(start_time,
                                                                                                    interval_by_units,
+                                                                                                   x,
                                                                                                    height,
                                                                                                    fontsize,
                                                                                                    interval_units,
-                                                                                                   size))
-
+                                                                                                   size)
+)
 IJ.saveAs("Tiff", "{}{}_time_stamped".format(path, title))
