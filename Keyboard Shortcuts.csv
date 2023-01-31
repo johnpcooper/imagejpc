@@ -27,6 +27,7 @@ F,Flatten
 G,Capture Screen
 h,Histogram
 H,Orthogonal Views
+I,^interpolate rois [I] (macro)
 I,Invert
 i,Show Info...
 j,^Save As JPEG... [j] (macro)
